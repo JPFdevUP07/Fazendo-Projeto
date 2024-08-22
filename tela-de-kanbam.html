@@ -14,9 +14,11 @@
 <body>
     <div class="header">
         <h1>Kanbam Board</h1>
-        <button id="openModalBtn">Nova Tarefa</button>
+        <button class="primary">Nova Tarefa</button>
     </div>
+
     <div class="container">
+        
         <!-- coluna 1 -->
          <div class="column">  
             <div class="head">
@@ -26,6 +28,7 @@
 
             </div>
         </div>
+
         <!-- coluna 2 -->
         <div class="column">
             <div class="head">
@@ -35,6 +38,7 @@
 
             </div>
         </div>
+
         <!-- coluna 3 -->
         <div class="column">
             <div class="head">
@@ -44,6 +48,7 @@
 
             </div>
         </div>
+
         <!-- coluna 4 -->
         <div class="column">
             <div class="head">
@@ -54,6 +59,44 @@
             </div>
         </div>
 
+    </div>
+
+    <div id="modal">
+        <div class="box">
+
+            <div class="head">
+                <span>Nova Tarefa</span>
+                <button class="button">x</button>
+            </div>
+
+            <div class="form"> 
+
+                <!-- area para descrição somente de texto -->
+                <div class="form-group">
+                    <label for="">Descrição</label>
+                    <textarea id="description" rows="3"></textarea>
+                </div>
+
+                <!-- area para prioridade da tarefa, com opições de nives para a prioridade -->
+                <div class="form-group">
+                    <label for="priority">Prioridade</label>
+                    <select id="Priority">
+                       <option>Baixa</option>
+                       <option>Media</option>
+                       <option>Alta</option>
+                    </select>
+                </div>
+
+                <!-- area para definir data de entrega -->
+                <div class="form-group">
+                    <label for="">Prazo</label>
+                    <input type="date" id="deadline"> 
+                </div>
+
+                <button class="primary">Cadastrar</button>
+
+            </div>
+        </div>
     </div>
 
 </body>

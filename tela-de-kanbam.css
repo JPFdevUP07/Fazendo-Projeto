@@ -1,3 +1,9 @@
+:root{
+    --primary-color: mediumpurple;
+    --hover: rgb(44, 0, 131);
+}
+
+
 *{
     padding: 0;
     margin: 0;
@@ -19,9 +25,9 @@ body{
     padding: 30px;
 }
 
-#openModalBtn {
+button.primary {
     border: none;
-    background-color: mediumpurple;
+    background-color: var(--primary-color);
     color: #fff;
     font-size: 16px;
     padding: 9px 22px;
@@ -29,7 +35,12 @@ body{
     cursor: pointer;
 }
 
-.container{
+.primary:hover {
+    background-color: var(--hover);
+    transition: 0.1s;
+}
+
+.container {
     display: flex;
     gap: 30px;
     justify-content: center;
@@ -41,6 +52,105 @@ body{
     width: 250px;
     height: 600px;
     background-color: #fff;
+    border-radius: 5px;
+    overflow: hidden;
 }
 
+.container .column .head {
+    background-color: var(--primary-color);
+    color: #fff;
+    text-align: center;
+    padding: 15px;    
+}
 
+#modal{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* aqui se inicia a estilização do modal */
+    #modal .box{
+        background-color: #fff;
+        min-width: 400px;
+        border-radius: 7px;
+        overflow: hidden;
+    }
+
+    /* estilização do cabeçalho do formulario */
+        #modal .box .head{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        /* estllização do titulo */
+            #modal .box .head span{
+                font-size: 18px;
+                font-weight: 700;
+                color: #333;
+            }
+        /* estilização do botão do cabeçalho */
+            #modal .box .head .button{
+                border: none;
+                background: none;
+                font-size: 24px;
+                font-weight: 350;
+                cursor: pointer;
+                color: #333;
+            }
+        
+    /*estilização do formulario  */
+        
+        /* espacamento do formulario geral*/
+        #modal .box .form{
+            padding: 20px;
+        }
+            /* estilização de cada campo do formulario */
+            #modal .box .form .form-group{
+                margin-bottom: 15px;
+            }
+
+            /* estilização de cada nome dos campos */
+            #modal .box .form label{
+                display: block;
+                font-size: 14px;
+                margin-bottom: 5px;
+                color: #333;
+            }
+            /* estilização dos campos de texto, de opcoes de prioridades e de datas
+            Obs: estao juntos, pois tem as mesmas estilizações  */
+            #modal .box .form textarea,
+            #modal .box .form select,
+            #modal .box .form input {
+                width: 100%;
+                border-radius: 7px;
+                font-size: 14px;
+                border: 1px solid #999;
+                color: #333;
+            }
+
+            /* espacamento do campo de texto(textarea) */
+            #modal .box .form textarea{
+                padding: 10px 15px;
+            }
+
+            /* espacamneto do campo de opções (select´s) */
+            #modal .box .form select{
+               padding: 10px;
+            }
+
+            /* espacamento do campo de datas(input´s) */
+            #modal .box .form input{
+                padding: 18px;
+            }
+                
+            
