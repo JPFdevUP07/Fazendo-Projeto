@@ -16,6 +16,7 @@ body{
     background-color: #ddd;
 }
 
+/* estilização do header */
 .header{
     width: 100%;
     display: flex;
@@ -25,6 +26,7 @@ body{
     padding: 30px;
 }
 
+ /* estilização do botao do header */
 button.primary {
     border: none;
     background-color: var(--primary-color);
@@ -34,12 +36,19 @@ button.primary {
     border-radius: 6px;
     cursor: pointer;
 }
+/* estilização apenas do butao de dentro do modal */
+#modal .box .form .primary{
+    display: block;
+    margin-left: auto;
+}
 
+/* hover do botao do header */
 .primary:hover {
     background-color: var(--hover);
     transition: 0.1s;
 }
 
+/* Estilização da caixa maior */
 .container {
     display: flex;
     gap: 30px;
@@ -48,6 +57,7 @@ button.primary {
     padding: 50px 0;
 }
 
+/* estilos da coluna */
 .container .column {
     width: 250px;
     height: 600px;
@@ -56,6 +66,7 @@ button.primary {
     overflow: hidden;
 }
 
+/* estilização do cabeçalho da coluna */
 .container .column .head {
     background-color: var(--primary-color);
     color: #fff;
@@ -63,6 +74,7 @@ button.primary {
     padding: 15px;    
 }
 
+/* aqui começa a estilização do modal */
 #modal{
     position: fixed;
     top: 0;
@@ -70,7 +82,7 @@ button.primary {
     left: 0;
     right: 0;
     background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
 }
@@ -83,7 +95,7 @@ button.primary {
         overflow: hidden;
     }
 
-    /* estilização do cabeçalho do formulario */
+    /* estilização do cabeçalho do modal*/
         #modal .box .head{
             display: flex;
             justify-content: space-between;
@@ -106,6 +118,9 @@ button.primary {
                 font-weight: 350;
                 cursor: pointer;
                 color: #333;
+            }
+            #modal .box .head .button:hover{
+                color: red;
             }
         
     /*estilização do formulario  */
@@ -150,7 +165,6 @@ button.primary {
 
             /* espacamento do campo de datas(input´s) */
             #modal .box .form input{
-                padding: 18px;
+                padding: 10px;
             }
-                
             

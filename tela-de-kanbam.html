@@ -14,7 +14,7 @@
 <body>
     <div class="header">
         <h1>Kanbam Board</h1>
-        <button class="primary">Nova Tarefa</button>
+        <button class="primary" onclick="openModal()">Nova Tarefa</button>
     </div>
 
     <div class="container">
@@ -60,15 +60,16 @@
         </div>
 
     </div>
-
+ <!-- modal, que vai ficar por cima da tela -->
     <div id="modal">
         <div class="box">
 
+            <!-- cabeçalho do modal -->
             <div class="head">
                 <span>Nova Tarefa</span>
-                <button class="button">x</button>
+                <button class="button" onclick="closeModal()">x</button>
             </div>
-
+            <!-- formulario -->
             <div class="form"> 
 
                 <!-- area para descrição somente de texto -->
@@ -80,7 +81,7 @@
                 <!-- area para prioridade da tarefa, com opições de nives para a prioridade -->
                 <div class="form-group">
                     <label for="priority">Prioridade</label>
-                    <select id="Priority">
+                    <select id="priority">
                        <option>Baixa</option>
                        <option>Media</option>
                        <option>Alta</option>
@@ -93,7 +94,7 @@
                     <input type="date" id="deadline"> 
                 </div>
 
-                <button class="primary">Cadastrar</button>
+                <button class="primary" onclick="createTask()">Cadastrar</button>
 
             </div>
         </div>
