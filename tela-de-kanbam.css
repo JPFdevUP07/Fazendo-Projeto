@@ -1,5 +1,5 @@
 :root{
-    --primary-color: mediumpurple;
+    --primary-color: rgb(106, 55, 207);
     --hover: rgb(44, 0, 131);
 }
 
@@ -57,22 +57,44 @@ button.primary {
     padding: 50px 0;
 }
 
-/* estilos da coluna */
-.container .column {
-    width: 250px;
-    height: 600px;
-    background-color: #fff;
-    border-radius: 5px;
-    overflow: hidden;
-}
+    /* estilos da coluna */
+    .container .column {
+        width: 250px;
+        height: 600px;
+        background-color: #fff;
+        border-radius: 5px;
+        overflow: hidden;
+    }
 
-/* estilização do cabeçalho da coluna */
-.container .column .head {
-    background-color: var(--primary-color);
-    color: #fff;
-    text-align: center;
-    padding: 15px;    
-}
+        /* estilização do cabeçalho da coluna */
+        .container .column .head {
+            background-color: var(--primary-color);
+            color: #fff;
+            text-align: center;
+            padding: 15px;   
+        }
+        
+        .container .column .body {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 20px;
+        }
+
+            .container .column .body .card {
+                background-color: #eee;
+                border-radius: 7px;
+                padding: 10px;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+                .container .column .body .card .info {
+                    font-size: 14px;
+                    color: #333;
+                    display: flex;
+                    flex-direction: column;
+                }
 
 /* aqui começa a estilização do modal */
 #modal{
