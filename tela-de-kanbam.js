@@ -2,25 +2,46 @@ const $modal = document.getElementById('modal');
 const $descriptionInput = document.getElementById('description');
 const $priorityInput = document.getElementById('priority');
 const $deadLineInput = document.getElementById('deadline');
+const $idInput = document.getElementById('idInput');
 
 const $todoColumnBody = document.querySelector('#todoColumn .body');
 
 var todoList = [];
 
-function openModal(){   /*abrir modal*/
+function openModal(id){   /*abrir modal*/
     $modal.style.display = "flex";
     document.body.style.overflow = "hidden";
+
+    if(id) {
+        const index = todoList.findIndex(function(task) {
+            return task.id == id;
+        });
+
+        const task = todoList[index];
+
+        $idInput.value = task.id;
+        $descriptionInput.value = task.description;
+        $priorityInput.value = task.priority;
+        $deadLineInput.value = task.deadLine;
+    }       
 }
 
 function closeModal(){ /*fechar modal */
     $modal.style.display = "none";
     document.body.style.overflow = "auto";
+
+    $idInput.value = "";
+    $descriptionInput.value = "";
+    $priorityInput.value = "";
+    $deadLineInput.value = "";
 }
+
+
 
 function generateCards (){ /*gerar cards */
     const todoListhtml = todoList.map(function(task){
         return `
-            <div class="card">
+            <div class="card" ondblclick="openModal(${task.id})">
                 <div class="info">
                     <b>Descrição</b>
                     <span>${task.description}</span>
@@ -44,6 +65,7 @@ function generateCards (){ /*gerar cards */
 
 function createTask(){ /*criando tasks */
     const newTask = {
+        id: Math.floor(Math.random() * 9999999),
         description: $descriptionInput.value,
         priority: $priorityInput.value,
         deadLine: $deadLineInput.value,
