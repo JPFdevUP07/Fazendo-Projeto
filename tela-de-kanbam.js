@@ -6,6 +6,13 @@ const $idInput = document.getElementById('idInput');
 
 const $todoColumnBody = document.querySelector('#todoColumn .body');
 
+const $criationModeTitle = document.getElementById('crationModeTitle');
+const $editingModeTitle = document.getElementById('editingModeTitle');
+
+const $crationModeButton = document.getElementById('crationModeButton');
+const $editingModeButton = document.getElementById('editingModeButton');
+
+
 var todoList = [];
 
 function openModal(id){   /*abrir modal*/
@@ -13,6 +20,12 @@ function openModal(id){   /*abrir modal*/
     document.body.style.overflow = "hidden";
 
     if(id) {
+        $criationModeTitle.style.display = "none";
+        $editingModeTitle.style.display = "block";
+
+        $crationModeButton.style.display = "none";
+        $editingModeButton.style.display = "block";
+
         const index = todoList.findIndex(function(task) {
             return task.id == id;
         });
@@ -23,7 +36,13 @@ function openModal(id){   /*abrir modal*/
         $descriptionInput.value = task.description;
         $priorityInput.value = task.priority;
         $deadLineInput.value = task.deadLine;
-    }       
+    } else {
+        $criationModeTitle.style.display = "block";
+        $editingModeTitle.style.display = "none";
+
+        $crationModeButton.style.display = "block";
+        $editingModeButton.style.display = "none";
+    }      
 }
 
 function closeModal(){ /*fechar modal */
@@ -75,5 +94,24 @@ function createTask(){ /*criando tasks */
 
     closeModal();
     generateCards();
+   
 }
 
+function updateTask(){
+    const task = {
+        id: $idInput.value,
+        description: $descriptionInput.value,
+        priority: $priorityInput.value,
+        deadLine: $deadLineInput.value,
+    }
+
+    
+    const index = todoList.findIndex(function(task) {
+        return task.id == $idInput.value;
+    });
+
+    todoList[index] = task;
+
+    closeModal();
+    generateCards();
+}
