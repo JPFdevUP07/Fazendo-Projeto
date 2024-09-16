@@ -2,9 +2,8 @@ const $modal = document.getElementById('modal');
 const $descriptionInput = document.getElementById('description');
 const $priorityInput = document.getElementById('priority');
 const $deadLineInput = document.getElementById('deadline');
+const $columnInput = document.getElementById('column');
 const $idInput = document.getElementById('idInput');
-
-const $todoColumnBody = document.querySelector('#todoColumn .body');
 
 const $criationModeTitle = document.getElementById('crationModeTitle');
 const $editingModeTitle = document.getElementById('editingModeTitle');
@@ -13,7 +12,7 @@ const $crationModeButton = document.getElementById('crationModeButton');
 const $editingModeButton = document.getElementById('editingModeButton');
 
 
-var todoList = [];
+var taskList = [];
 
 function openModal(id){   /*abrir modal*/
     $modal.style.display = "flex";
@@ -26,16 +25,17 @@ function openModal(id){   /*abrir modal*/
         $crationModeButton.style.display = "none";
         $editingModeButton.style.display = "block";
 
-        const index = todoList.findIndex(function(task) {
+        const index = taskList.findIndex(function(task) {
             return task.id == id;
         });
 
-        const task = todoList[index];
+        const task = taskList[index];
 
         $idInput.value = task.id;
         $descriptionInput.value = task.description;
         $priorityInput.value = task.priority;
         $deadLineInput.value = task.deadLine;
+        $columnInput.value = task.column;
     } else {
         $criationModeTitle.style.display = "block";
         $editingModeTitle.style.display = "none";
@@ -53,13 +53,25 @@ function closeModal(){ /*fechar modal */
     $descriptionInput.value = "";
     $priorityInput.value = "";
     $deadLineInput.value = "";
+    $columnInput.value = "";
 }
 
-
+function resetColumns (){
+    document.querySelector('[data-column"1"] .body').innerHTML = '';
+    document.querySelector('[data-column"2"] .body').innerHTML = '';
+    document.querySelector('[data-column"3"] .body').innerHTML = '';
+    document.querySelector('[data-column"4"] .body').innerHTML = '';
+}
 
 function generateCards (){ /*gerar cards */
-    const todoListhtml = todoList.map(function(task){
-        return `
+
+    resetColumns();
+    
+    taskList.forEach(function(task){
+
+        const columnBody = document.querySelector(`[data-column = "${task.column}"] .body`);
+
+        const card = `
             <div class="card" ondblclick="openModal(${task.id})">
                 <div class="info">
                     <b>Descrição</b>
@@ -77,9 +89,9 @@ function generateCards (){ /*gerar cards */
                 </div>
             </div>
         `;
-    })
 
-    $todoColumnBody.innerHTML = todoListhtml.join('');
+        columnBody.innerHTML += card;
+    });
 }
 
 function createTask(){ /*criando tasks */
@@ -88,9 +100,10 @@ function createTask(){ /*criando tasks */
         description: $descriptionInput.value,
         priority: $priorityInput.value,
         deadLine: $deadLineInput.value,
+        column: $columnInput.value,
     }
 
-    todoList.push(newTask);
+    taskList.push(newTask);
 
     closeModal();
     generateCards();
@@ -103,14 +116,15 @@ function updateTask(){
         description: $descriptionInput.value,
         priority: $priorityInput.value,
         deadLine: $deadLineInput.value,
+        column: $columnInput.value,
     }
 
     
-    const index = todoList.findIndex(function(task) {
+    const index = taskList.findIndex(function(task) {
         return task.id == $idInput.value;
     });
 
-    todoList[index] = task;
+    taskList[index] = task;
 
     closeModal();
     generateCards();
