@@ -88,6 +88,20 @@ button.primary {
             
         }
 
+        .container .column .body .add-btn{
+            background: none;
+            border: 1px solid;
+            border-radius: 10px;
+            padding: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            cursor: pointer;
+            color: #444;
+        }
+
+        
             .container .column .body .card {
                 background-color: #eee;
                 border-radius: 7px;
