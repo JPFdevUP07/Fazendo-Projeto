@@ -18,6 +18,8 @@ function openModal(data_column){   /*abrir modal*/
     $modal.style.display = "flex";
     document.body.style.overflow = "hidden";
 
+    $columnInput.value = data_column;
+
     $criationModeTitle.style.display = "block";
     $editingModeTitle.style.display = "none";
 
@@ -64,10 +66,10 @@ function closeModal(){ /*fechar modal */
 }
 
 function resetColumns() {
-    document.querySelector('[data-column="1"] .body').innerHTML = "";
-    document.querySelector('[data-column="2"] .body').innerHTML = "";
-    document.querySelector('[data-column="3"] .body').innerHTML = "";
-    document.querySelector('[data-column="4"] .body').innerHTML = "";
+    document.querySelector('[data-column="1"] .body .cardsList').innerHTML = "";
+    document.querySelector('[data-column="2"] .body .cardsList').innerHTML = "";
+    document.querySelector('[data-column="3"] .body .cardsList').innerHTML = "";
+    document.querySelector('[data-column="4"] .body .cardsList').innerHTML = "";
 }
 
 function generateCards() {
@@ -76,10 +78,10 @@ function generateCards() {
 
     // Itera sobre a lista de tarefas para gerar os cards
     taskList.forEach(function (task) {
-        const columnBody = document.querySelector(`[data-column="${task.column}"] .body`);
+        const columnBody = document.querySelector(`[data-column="${task.column}"] .body .cardsList`);
 
         const card = `
-            <div class="card" ondblclick="openModalToEdit(${task.id})">
+            <div id="${task.id}" class="card" ondblclick="openModalToEdit(${task.id})" draggable="true">
                 <div class="info">
                     <b>Descrição</b>
                     <span>${task.description}</span>
@@ -99,9 +101,6 @@ function generateCards() {
         columnBody.innerHTML += card;
     });
 }
-
-
-
 
 function createTask(){ /*criando tasks */
     const newTask = {
@@ -137,4 +136,37 @@ function updateTask(){
 
     closeModal();
     generateCards();
+}
+
+function changeColumn(task_id, column_id){
+    if(task_id && column_id){
+        taskList = taskList.map((task) => {
+            if (task_id !== task.id) return task;
+
+            return{
+                ...task,
+                column:column_id,
+            };
+        });
+    }   
+}
+
+function dragstart_handler(ev) {
+    console.log(ev);
+
+    // Adiciona o id do elemento alvo para o objeto de transferência de dados
+    ev.dataTransfer.setData("my_custom_data", ev.target.id);
+    ev.dataTransfer.effectAllowed = "move";
+}
+function dragover_handler(ev) {
+    ev.preventDefault();
+    // Define o dropEffect para ser do tipo move
+    ev.dataTransfer.dropEffect = "move";
+}
+function drop_handler(ev) {
+    ev.preventDefault();
+    // Pega o id do alvo e adiciona o elemento que foi movido para o DOM do alvo
+    const data = ev.dataTransfer.getData("my_custom_data");
+
+    console.log(ev);
 }

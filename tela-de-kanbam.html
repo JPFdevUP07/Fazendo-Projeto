@@ -12,14 +12,14 @@
 </head>
 <body>
     <div class="header">
-        <h1>Kanbam Board</h1>
-        <button class="primary" onclick="openModal()">Nova Tarefa</button>
+        <h1>Quadro Kanbam</h1>
+        
     </div>
 
     <div class="container">
         
         <!-- coluna 1 -->
-         <div class="column" data-column="1">  
+         <div class="column" data-column="1" ondrop="drop_handler(event);" ondragover="dragover_handler(event);">  
             <div class="head">
                 <span>A Fazer</span>
             </div>
@@ -35,7 +35,7 @@
         </div>
 
         <!-- coluna 2 -->
-        <div class="column" data-column="2">
+        <div class="column" data-column="2" ondrop="drop_handler(event);" ondragover="dragover_handler(event);">
             <div class="head">
                 <span>Em Progresso</span>
             </div>
@@ -51,7 +51,7 @@
         </div>
 
         <!-- coluna 3 -->
-        <div class="column" data-column="3">
+        <div class="column" data-column="3" ondrop="drop_handler(event);" ondragover="dragover_handler(event);">
             <div class="head">
                 <span>Finalizado</span>
             </div>
@@ -67,7 +67,7 @@
         </div>
 
         <!-- coluna 4 -->
-        <div class="column" data-column="4">
+        <div class="column" data-column="4" ondrop="drop_handler(event);" ondragover="dragover_handler(event);">
             <div class="head">
                 <span>Arquivado</span>
             </div>
