@@ -14,6 +14,7 @@ const $editingModeButton = document.getElementById('editingModeButton');
 
 var taskList = [];
 
+
 function openModal(data_column){   /*abrir modal*/
     $modal.style.display = "flex";
     document.body.style.overflow = "hidden";
@@ -81,7 +82,7 @@ function generateCards() {
         const columnBody = document.querySelector(`[data-column="${task.column}"] .body .cardsList`);
 
         const card = `
-            <div id="${task.id}" class="card" ondblclick="openModalToEdit(${task.id})" draggable="true">
+            <div id="${task.id}" class="card" ondblclick="openModalToEdit(${task.id})" draggable="true" ondragstart="dragstart_handler(event)">
                 <div class="info">
                     <b>Descrição</b>
                     <span>${task.description}</span>
@@ -100,6 +101,14 @@ function generateCards() {
         `;
         columnBody.innerHTML += card;
     });
+
+    setTimeout(() => {
+        const elements = document.getElementsByClassName("card");
+        console.log(elements)
+        for (const element of elements) {
+            element.addEventListener("dragstart", dragstart_handler); 
+        }
+    }, 1000);
 }
 
 function createTask(){ /*criando tasks */
@@ -109,13 +118,12 @@ function createTask(){ /*criando tasks */
         priority: $priorityInput.value,
         deadLine: $deadLineInput.value,
         column: $columnInput.value,
-    };
+    }
 
     taskList.push(newTask);
 
     closeModal();
     generateCards();
-   
 }
 
 function updateTask(){
@@ -141,19 +149,19 @@ function updateTask(){
 function changeColumn(task_id, column_id){
     if(task_id && column_id){
         taskList = taskList.map((task) => {
-            if (task_id !== task.id) return task;
+            if (String(task_id) !== String(task.id)) return task;
 
             return{
                 ...task,
-                column:column_id,
+                column: String(column_id),
             };
         });
-    }   
+    } 
+
+    generateCards();  
 }
 
 function dragstart_handler(ev) {
-    console.log(ev);
-
     // Adiciona o id do elemento alvo para o objeto de transferência de dados
     ev.dataTransfer.setData("my_custom_data", ev.target.id);
     ev.dataTransfer.effectAllowed = "move";
@@ -163,10 +171,13 @@ function dragover_handler(ev) {
     // Define o dropEffect para ser do tipo move
     ev.dataTransfer.dropEffect = "move";
 }
-function drop_handler(ev) {
+function drop_handler(ev, column_id) {
     ev.preventDefault();
     // Pega o id do alvo e adiciona o elemento que foi movido para o DOM do alvo
-    const data = ev.dataTransfer.getData("my_custom_data");
-
-    console.log(ev);
+    const task_id = ev.dataTransfer.getData("my_custom_data");
+        
+    changeColumn(task_id, column_id);
 }
+
+
+

@@ -1,6 +1,10 @@
 :root{
     --primary-color: rgb(106, 55, 207);
     --hover: rgb(44, 0, 131);
+    --cinzaclaro: #1b1b1b ;
+    --branco: #000000;
+    --cinzaescuro: #ffffff;
+    --branco2:#ffffff;
 }
 
 
@@ -13,7 +17,7 @@
 }
 
 body{
-    background-color: #ddd;
+    background-color: var(--cinzaclaro);
 }
 
 /* estilização do header */
@@ -22,15 +26,16 @@ body{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: white;
+    background-color: var(--branco);
     padding: 30px;
+    color: var(--branco2);
 }
 
  /* estilização do botao do header */
 button.primary {
     border: none;
     background-color: var(--primary-color);
-    color: #fff;
+    color: var(--branco);
     font-size: 16px;
     padding: 9px 22px;
     border-radius: 6px;
@@ -60,7 +65,7 @@ button.primary {
     /* estilos da coluna */
     .container .column {
         width: 250px;
-        background-color: #fff;
+        background-color: var(--branco);
         border-radius: 5px;
         overflow: hidden;
         height: 600px;
@@ -73,7 +78,7 @@ button.primary {
         /* estilização do cabeçalho da coluna */
         .container .column .head {
             background-color: var(--primary-color);
-            color: #fff;
+            color: var(--branco2);
             text-align: center;
             padding: 15px; 
         }
@@ -100,17 +105,18 @@ button.primary {
             align-items: center;
             width: 100%;
             cursor: pointer;
-            color: #444;
+            color: var(--cinzaescuro);
         }
 
             .container .column .body .card {
-                background-color: #eee;
+                background-color: var(--cinzaclaro);
                 border-radius: 7px;
                 padding: 10px;
                 display: flex;
                 flex-direction: column;
                 gap: 10px;
                 margin-bottom: 20px;
+                border: 1px solid #fff;
             }
                 .container .column .body .card .info {
                     font-size: 14px;
@@ -134,7 +140,7 @@ button.primary {
 
 /* aqui se inicia a estilização do modal */
     #modal .box{
-        background-color: #fff;
+        background-color: var(--cinzaclaro);
         min-width: 400px;
         border-radius: 7px;
         overflow: hidden;
@@ -146,14 +152,14 @@ button.primary {
             justify-content: space-between;
             align-items: center;
             padding: 10px 20px;
-            border-bottom: 1px solid #ddd;
+            border-bottom: 1px solid var(--branco2);
         }
 
         /* estllização do titulo */
             #modal .box .head span{
                 font-size: 18px;
                 font-weight: 700;
-                color: #333;
+                color: var(--branco2);
             }
         /* estilização do botão do cabeçalho */
             #modal .box .head .button{
@@ -162,7 +168,7 @@ button.primary {
                 font-size: 24px;
                 font-weight: 350;
                 cursor: pointer;
-                color: #333;
+                color: var(--branco2);
             }
             #modal .box .head .button:hover{
                 color: red;
@@ -184,7 +190,7 @@ button.primary {
                 display: block;
                 font-size: 14px;
                 margin-bottom: 5px;
-                color: #333;
+                color: var(--branco2);
             }
             /* estilização dos campos de texto, de opcoes de prioridades e de datas
             Obs: estao juntos, pois tem as mesmas estilizações  */
@@ -195,7 +201,9 @@ button.primary {
                 border-radius: 7px;
                 font-size: 14px;
                 border: 1px solid #999;
-                color: #333;
+                color: var(--branco2);
+                background-color: var(--cinzaclaro);
+                
             }
 
             /* espacamento do campo de texto(textarea) */
