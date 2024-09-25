@@ -24,11 +24,12 @@ body{
 .header{
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     background-color: var(--branco);
     padding: 30px;
     color: var(--branco2);
+    border-bottom: 2px solid var(--primary-color);
 }
 
  /* estilização do botao do header */
@@ -40,6 +41,7 @@ button.primary {
     padding: 9px 22px;
     border-radius: 6px;
     cursor: pointer;
+    color: var(--branco2);
 }
 /* estilização apenas do butao de dentro do modal */
 #modal .box .form .primary{
@@ -83,13 +85,37 @@ button.primary {
             padding: 15px; 
         }
         
-        .container .column .body{
+        .container .column .body {
             padding: 20px;
             overflow-y: auto;
             flex: 1;
-            
         }
-
+        
+        /* Estiliza o track (trilho) da barra de rolagem com cinza */
+        .container .column .body::-webkit-scrollbar-track {
+            background-color: var(--cinzaclaro); /* Cor de fundo cinza para o trilho */
+            border-radius: 10px; /* Cantos arredondados */
+        }
+        
+        /* Estiliza o thumb (a parte que se move) com preto */
+        .container .column .body::-webkit-scrollbar-thumb {
+            background-color: #000000; /* Cor preta para o polegar */
+            border-radius: 10px; /* Arredondar os cantos */
+            border: 2px solid #cccccc; /* Espaçamento entre o thumb e o track */
+        }
+        
+        /* Cor do polegar ao passar o mouse (ligeiramente mais claro) */
+        .container .column .body::-webkit-scrollbar-thumb:hover {
+            background-color: #333333; /* Preto mais claro no hover */
+        }
+        
+        /* Firefox: Personalização da barra de rolagem */
+        .container .column .body {
+            scrollbar-width: thin; /* Barra de rolagem fina */
+            scrollbar-color: #000000 #cccccc; /* Polegar preto e trilho cinza */
+        }
+        
+        
         .container .column .body .cardsList{
             display: flex;
             flex-direction: column;
@@ -116,11 +142,10 @@ button.primary {
                 flex-direction: column;
                 gap: 10px;
                 margin-bottom: 20px;
-                border: 1px solid #fff;
             }
                 .container .column .body .card .info {
                     font-size: 14px;
-                    color: #333;
+                    color: var(--branco2);
                     display: flex;
                     flex-direction: column;
                 }
@@ -152,7 +177,7 @@ button.primary {
             justify-content: space-between;
             align-items: center;
             padding: 10px 20px;
-            border-bottom: 1px solid var(--branco2);
+            border-bottom: 1px solid var(--primary-color);
         }
 
         /* estllização do titulo */
@@ -200,7 +225,7 @@ button.primary {
                 width: 100%;
                 border-radius: 7px;
                 font-size: 14px;
-                border: 1px solid #999;
+                border: 1px solid var(--cinzaescuro);
                 color: var(--branco2);
                 background-color: var(--cinzaclaro);
                 
